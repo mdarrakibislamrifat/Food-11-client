@@ -1,15 +1,18 @@
 import { useContext, useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../AuthProviders/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { GoogleAuthProvider } from "firebase/auth";
 
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn , googleSignIn} = useContext(AuthContext);
   const [error, setError] = useState("");
+  const provider = new GoogleAuthProvider();
 
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate= useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,13 +24,22 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         e.target.reset();
-        toast.success('Logged in...',{id:toastId})
+        toast.success('Logged in...',{id:toastId});
         navigate(location?.state ? location.state : "/");
         
       })
       .catch((error) => {
         setError(error.message);
       });
+  };
+  
+
+  const handleGoogle = () => {
+    googleSignIn(provider).then((result) => {
+      navigate(location?.state ? location.state : "/").catch((error) => {
+        console.log(error.message);
+      });
+    });
   };
   <Toaster
   position="top-center"
@@ -80,6 +92,11 @@ const Login = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
+          <div className="flex items-center justify-center  bg-green-400 p-2 rounded-lg mb-6">
+            <button onClick={handleGoogle} className="flex items-center">
+              <FaGoogle className="mr-2 "></FaGoogle> Sign In With Google
+            </button>
+          </div>
         </div>
       </div>
     </div>

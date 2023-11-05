@@ -1,18 +1,18 @@
 
 import { useContext, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+
 import { AuthContext } from "../AuthProviders/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 
-const provider = new GoogleAuthProvider();
+
 const Register = () => {
   const { createUser, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [registerError, SetRegisterError] = useState("");
   const location = useLocation();
-  const navigate = useNavigate();
+  
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -45,13 +45,7 @@ const Register = () => {
     }
   };
 
-  const handleGoogle = () => {
-    googleSignIn(provider).then((result) => {
-      navigate(location?.state ? location.state : "/").catch((error) => {
-        console.log(error.message);
-      });
-    });
-  };
+ 
 
   return (
     <div className="hero my-10">
@@ -124,11 +118,7 @@ const Register = () => {
               <button className="btn btn-primary">Register</button>
             </div>
           </form>
-          <div className="flex items-center justify-center  bg-green-400 p-2 rounded-lg mb-6">
-            <button onClick={handleGoogle} className="flex items-center">
-              <FaGoogle className="mr-2 "></FaGoogle> Sign In With Google
-            </button>
-          </div>
+          
         </div>
       </div>
     </div>

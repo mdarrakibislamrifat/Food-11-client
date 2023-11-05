@@ -99,7 +99,7 @@ const Fooditems = () => {
         ))}
       </div>
       <div className='pagination'>
-        <p>Current page : {currentPage}</p>
+        
         <button onClick={handlePreviousPage}>Prev</button>
         {
             pages?.map(page=><button className={currentPage===page && 'selected'} onClick={()=>setCurrentPage(page)}
