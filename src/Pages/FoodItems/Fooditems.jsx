@@ -37,24 +37,16 @@ const Fooditems = () => {
 
 
 
-
-
-
-
   useEffect(() => {
     setCardsData(items);
   }, [items]);
 
-  const handleCard = (data) => {
-    setCardsData(data);
-  };
-
   const handleSearch = (e) => {
     e.preventDefault();
     const value = e.target.text.value.toLowerCase();
-    const data = items.filter((sData) => sData.name.toLowerCase() === value);
-    handleCardData(data);
-    console.log("hey");
+    const data = items?.filter((sData) => sData.name.toLowerCase() === value);
+    setItems(data)
+    
   };
 
 
@@ -76,7 +68,7 @@ const Fooditems = () => {
         setCurrentPage(currentPage+1)
     }
   }
-  console.log(items)
+ 
  
 
   return (
@@ -101,7 +93,7 @@ const Fooditems = () => {
           <SingleFoodCard
             key={item._id}
             item={item}
-            handleCard={handleCard}
+            
           ></SingleFoodCard>
         ))}
       </div>
