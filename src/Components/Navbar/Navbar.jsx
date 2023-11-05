@@ -1,8 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProviders/AuthProviders";
 
 const Navbar = () => {
-    const navLinks=<>
-    <li>
+  const { user, logOut } = useContext(AuthContext);
+
+  const navLinks = (
+    <>
+      <li>
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
@@ -16,7 +21,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-    <li>
+      <li>
         <NavLink
           to="/allfood"
           className={({ isActive, isPending }) =>
@@ -30,7 +35,7 @@ const Navbar = () => {
           All Food items
         </NavLink>
       </li>
-    <li>
+      <li>
         <NavLink
           to="/blogs"
           className={({ isActive, isPending }) =>
@@ -44,21 +49,25 @@ const Navbar = () => {
           Blogs
         </NavLink>
       </li>
-    <li>
-        <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "text-amber-500 underline font-bold"
-              : ""
-          }
-        >
-          Login
-        </NavLink>
+      <li>
+        {user ? (
+          <button onClick={logOut}>Logout</button>
+        ) : (
+          <NavLink
+            to="/login"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "text-amber-500 underline font-bold"
+                : ""
+            }
+          >
+            Login
+          </NavLink>
+        )}
       </li>
-    <li>
+      <li>
         <NavLink
           to="/profile"
           className={({ isActive, isPending }) =>
@@ -72,9 +81,8 @@ const Navbar = () => {
           User Profile
         </NavLink>
       </li>
-  
-    
     </>
+  );
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -102,15 +110,38 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <img className="w-20" src="https://i.ibb.co/fpkCCYh/5526265.jpg" alt="" />
-        <a className="btn btn-ghost normal-case text-xl">Take It Cheesy</a>
+        <img
+          className="w-20"
+          src="https://i.ibb.co/fpkCCYh/5526265.jpg"
+          alt=""
+        />
+        <Link className="btn btn-ghost normal-case text-xl">Take It Cheesy</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-        {navLinks}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      
+      {user && <div className="dropdown">
+        <label tabIndex={0} className="btn m-1">
+        <img
+                className="rounded-full w-[50px] mr-2"
+                src={user?.photoURL}
+                alt=""
+              />
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52"
+        >
+          <li>{user?.displayName}</li>
+          <li>
+            <Link to='/addFood'>Add a food item</Link>
+          </li>
+          <li>
+            <a>Item 2</a>
+          </li>
+        </ul>
+      </div>}
+     
     </div>
   );
 };
