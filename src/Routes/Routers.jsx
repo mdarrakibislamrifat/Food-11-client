@@ -29,8 +29,8 @@ import AddFood from "../Pages/AddFood/AddFood";
         },
         {
             path:'/allfood',
-            element:<Fooditems></Fooditems>,
-            loader:()=>fetch('http://localhost:5000/items')
+            element:<Fooditems></Fooditems>
+            
         },
         {
             path:'/register',

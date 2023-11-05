@@ -1,17 +1,127 @@
-import { useLoaderData } from "react-router-dom";
-import SingleFoodCard from "../../Components/SingleFoodCard/SingleFoodCard";
 
+import './pagination.css'
+import SingleFoodCard from "../../Components/SingleFoodCard/SingleFoodCard";
+import { useEffect, useState } from "react";
 
 const Fooditems = () => {
-    const items=useLoaderData();
-    
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-           {
-            items.map(item=><SingleFoodCard key={item._id} item={item}></SingleFoodCard>)
-           }
-        </div>
-    );
+  
+  const [items,setItems]=useState([])
+  const [cardsData, setCardsData] = useState(items);
+  const [itemsPerPage,setItemsPerPage]=useState(9);
+  const [currentPage,setCurrentPage]=useState(0)
+
+  const [countData, setCountData] = useState();
+
+  useEffect(()=>{
+  fetch(`http://localhost:5000/items?page=${currentPage}&&size=${itemsPerPage}`)
+  .then(res=>res.json())
+  .then(data=>setItems(data))
+  },[currentPage,itemsPerPage])
+
+
+
+  useEffect(() => {
+    fetch("http://localhost:5000/itemsCount")
+      .then((res) => res.json())
+      .then((data) => setCountData(data));
+  }, []);
+
+
+
+  const numberOfPages = Math.ceil(countData?.count / itemsPerPage);
+
+  const pages=[]
+    for(let i=0;i<numberOfPages;i++){
+        pages.push(i)
+    }
+
+
+
+
+
+
+
+  useEffect(() => {
+    setCardsData(items);
+  }, [items]);
+
+  const handleCard = (data) => {
+    setCardsData(data);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const value = e.target.text.value.toLowerCase();
+    const data = items.filter((sData) => sData.name.toLowerCase() === value);
+    handleCardData(data);
+    console.log("hey");
+  };
+
+
+  const handleitemsPerPage=e=>{
+    const value=parseInt(e.target.value)
+    console.log(value)
+    setItemsPerPage(value);
+    setCurrentPage(0);
+  }
+
+  const handlePreviousPage=()=>{
+    if(currentPage>0){
+        setCurrentPage(currentPage-1)
+    }
+  }
+
+  const handleNextPage=()=>{
+    if(currentPage<pages.length-1){
+        setCurrentPage(currentPage+1)
+    }
+  }
+  console.log(items)
+ 
+
+  return (
+    <div>
+      <div>
+        <form onSubmit={handleSearch} className="flex justify-center mb-4">
+          <input
+            type="text"
+            placeholder="Search Here"
+            name="text"
+            className="input input-bordered input-primary text-black w-full max-w-xs"
+          />
+          <input
+            className="bg-[#FF444A] p-[13px] rounded-lg text-base font-semibold text-white"
+            type="submit"
+            value="Search"
+          />
+        </form>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {items?.map((item) => (
+          <SingleFoodCard
+            key={item._id}
+            item={item}
+            handleCard={handleCard}
+          ></SingleFoodCard>
+        ))}
+      </div>
+      <div className='pagination'>
+        <p>Current page : {currentPage}</p>
+        <button onClick={handlePreviousPage}>Prev</button>
+        {
+            pages?.map(page=><button className={currentPage===page && 'selected'} onClick={()=>setCurrentPage(page)}
+                 key={page}>{page}</button>)
+        }
+        <button onClick={handleNextPage}>Next</button>
+        <select  value={itemsPerPage} onChange={handleitemsPerPage} name="" id="">
+            <option value="5">5</option>
+            <option value="9">9</option>
+            <option value="18">18</option>
+            <option value="27">27</option>
+        </select>
+      </div>
+    </div>
+  );
 };
 
 export default Fooditems;
