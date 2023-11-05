@@ -121,9 +121,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       {user && <div className="dropdown">
-        <label tabIndex={0} className="btn m-1">
+        <label tabIndex={0} >
         <img
-                className="rounded-full w-[50px] mr-2"
+                className="rounded-full w-[70px] h-[50px] mr-2"
                 src={user?.photoURL}
                 alt=""
               />
@@ -137,7 +137,10 @@ const Navbar = () => {
             <Link to='/addFood'>Add a food item</Link>
           </li>
           <li>
-            <a>Item 2</a>
+            <Link to='/addedFoodItem'>My Added Food Items</Link>
+          </li>
+          <li>
+            <Link to='/orderedFoodItem'>My Ordered Food Items</Link>
           </li>
         </ul>
       </div>}

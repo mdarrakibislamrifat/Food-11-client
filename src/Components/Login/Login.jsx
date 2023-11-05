@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthProviders/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const toastId=toast.loading('Logging in..')
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -19,14 +21,21 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         e.target.reset();
+        toast.success('Logged in...',{id:toastId})
         navigate(location?.state ? location.state : "/");
+        
       })
       .catch((error) => {
         setError(error.message);
       });
   };
+  <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
   return (
     <div className="hero my-10">
+    
       <div className="hero-content ">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="text-center ">

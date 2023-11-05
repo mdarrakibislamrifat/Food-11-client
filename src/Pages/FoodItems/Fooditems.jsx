@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const Fooditems = () => {
   
   const [items,setItems]=useState([])
+  // eslint-disable-next-line no-unused-vars
   const [cardsData, setCardsData] = useState(items);
   const [itemsPerPage,setItemsPerPage]=useState(9);
   const [currentPage,setCurrentPage]=useState(0)
