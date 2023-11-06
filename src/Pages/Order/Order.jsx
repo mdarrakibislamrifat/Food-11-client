@@ -8,7 +8,7 @@ const Order = () => {
   const item = useLoaderData();
   const { user } = useContext(AuthContext);
 
-  const { _id,name, image, origin, quantity, shortDescription } = item || {};
+  const { _id,name, image,email, origin, quantity, shortDescription } = item || {};
 
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
@@ -18,7 +18,8 @@ const Order = () => {
   today = mm + '/' + dd + '/' + yyyy;
 
   const handlePurchase=()=>{
-    fetch('http://localhost:5000/carts', {
+    if(user?.email !== email){
+      fetch('http://localhost:5000/carts', {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -35,7 +36,12 @@ const Order = () => {
           console.log(data);
         })
         .catch((error) => console.log(error));
+  }else{
+    toast.error('Don’t purchase because your own added food items.')
   }
+
+    }
+  
   
   return (
    

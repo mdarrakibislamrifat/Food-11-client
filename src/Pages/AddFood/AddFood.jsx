@@ -14,8 +14,8 @@ const AddFood = () => {
     const image = form.image.value;
     const name = form.name.value;
     const category = form.category.value;
-    const quantity = form.quantity.value;
-    const price = form.price.value;
+    const quantity = parseInt(form.quantity.value);
+    const price = parseFloat(form.price.value);
     const shortDescription = form.shortDescription.value;
     const origin = form.origin.value;
 
@@ -104,7 +104,7 @@ const AddFood = () => {
             </label>
             <label className="input-group">
               <input
-                type="type"
+                type="number"
                 name="quantity"
                 placeholder="Quantity"
                 className="input input-bordered w-full"
@@ -117,7 +117,7 @@ const AddFood = () => {
             </label>
             <label className="input-group">
               <input
-                type="text"
+                type="number"
                 name="price"
                 placeholder="Price"
                 className="input input-bordered w-full"

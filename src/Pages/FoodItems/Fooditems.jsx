@@ -13,11 +13,13 @@ const Fooditems = () => {
   const [itemsPerPage,setItemsPerPage]=useState(9);
   const [currentPage,setCurrentPage]=useState(0);
   const [loading,setLoading]=useState(false);
+  // const [fetchLoad,setFetchLoad]=useState(false)
 
   const [countData, setCountData] = useState();
   
 
   useEffect(()=>{
+    
   fetch(`http://localhost:5000/items?page=${currentPage}&&size=${itemsPerPage}`)
   .then(res=>res.json())
   .then(data=>setItems(data))
@@ -50,9 +52,15 @@ const Fooditems = () => {
     e.preventDefault();
     setLoading(true)
     setTimeout(()=>{
-      const value = e.target.text.value.toLowerCase();
-      const data = items?.filter((sData) => sData.name.toLowerCase() === value);
-      setItems(data)
+      const value = e.target.text.value.toLowerCase() ;
+      let filterItem=[]
+      if(value=== ''){
+        filterItem=items
+      }else{
+      filterItem = items?.filter((sData) => sData.name.toLowerCase() === value);
+      }
+      
+      setItems(filterItem)
       setLoading(false)
     },1000)
     
