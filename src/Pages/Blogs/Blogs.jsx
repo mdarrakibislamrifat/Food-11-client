@@ -1,8 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import { Helmet } from "react-helmet-async";
+
 const Blogs = () => {
     return (
        <div>
+         <Helmet>
+            <title>Cheesy | Blogs</title>
+         </Helmet>
          <div className="border-4 border-violet-600 p-4 mb-4">
             <h1 className="text-4xl font-bold">What is one way data binding?</h1>
             One-way data binding is a concept often used in web development, especially in frameworks like AngularJS or React. It describes a unidirectional flow of data, where the data source (often the model) is bound to the UI (View), but the changes made in the model reflect in the view, not the other way around.

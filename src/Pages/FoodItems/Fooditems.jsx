@@ -2,6 +2,7 @@
 import './pagination.css'
 import SingleFoodCard from "../../Components/SingleFoodCard/SingleFoodCard";
 import { useEffect, useState } from "react";
+import { Helmet } from 'react-helmet-async';
 
 const Fooditems = () => {
   
@@ -89,6 +90,9 @@ const Fooditems = () => {
           />
         </form>
       </div>
+      <Helmet>
+        <title>Cheesy | Food Items</title>
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {items?.map((item) => (
           <SingleFoodCard

@@ -4,6 +4,7 @@ import { AuthContext } from "../AuthProviders/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { GoogleAuthProvider } from "firebase/auth";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -47,7 +48,9 @@ const Login = () => {
 />
   return (
     <div className="hero my-10">
-    
+    <Helmet>
+      <title>Cheesy | Login</title>
+    </Helmet>
       <div className="hero-content ">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="text-center ">

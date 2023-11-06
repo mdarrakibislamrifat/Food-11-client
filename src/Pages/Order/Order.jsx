@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Components/AuthProviders/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Order = () => {
   const item = useLoaderData();
@@ -39,6 +40,9 @@ const Order = () => {
   return (
    
     <div className="card border-4 border-green-600  w-auto bg-base-100 shadow-xl">
+        <Helmet>
+          <title>Cheesy | Order</title>
+        </Helmet>
          <Toaster
   position="top-center"
   reverseOrder={false}

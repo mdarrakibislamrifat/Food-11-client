@@ -67,20 +67,7 @@ const Navbar = () => {
           </NavLink>
         )}
       </li>
-      <li>
-        <NavLink
-          to="/profile"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "text-amber-500 underline font-bold"
-              : ""
-          }
-        >
-          User Profile
-        </NavLink>
-      </li>
+    
     </>
   );
   return (

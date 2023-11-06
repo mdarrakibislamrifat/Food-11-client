@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Components/AuthProviders/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 const DetailsPage = () => {
   const item = useLoaderData();
@@ -11,7 +12,9 @@ const DetailsPage = () => {
     item || {};
   return (
     <div className="card border-4 border-violet-500  w-auto bg-base-100 shadow-xl">
-      
+      <Helmet>
+        <title>Cheesy | Food Details</title>
+      </Helmet>
       <figure className=" pt-10">
         <img  src={image} alt="Shoes" className="rounded-xl " />
       </figure>

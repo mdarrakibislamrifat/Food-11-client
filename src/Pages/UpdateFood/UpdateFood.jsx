@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { AuthContext } from "../../Components/AuthProviders/AuthProviders";
 import { Helmet } from "react-helmet-async";
+import toast, { Toaster } from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
 
-const AddFood = () => {
-    const {user}=useContext(AuthContext);
+const UpdateFood = () => {
+    const card = useLoaderData();
+  const {_id, image,name,category,quantity,price,shortDescription,origin} =
+    card;
 
-
-  const handleAddProduct = (e) => {
+  const handleUpdateProduct = (e) => {
     e.preventDefault();
     const form = e.target;
     const image = form.image.value;
@@ -18,8 +18,7 @@ const AddFood = () => {
     const price = form.price.value;
     const shortDescription = form.shortDescription.value;
     const origin = form.origin.value;
-
-    const product = {
+    const updateItem = {
       image,
       name,
       category,
@@ -28,29 +27,27 @@ const AddFood = () => {
       shortDescription,
       origin,
     };
-
-    fetch('http://localhost:5000/items', {
-      method: "POST",
+    fetch(`http://localhost:5000/items/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({image,name,category,quantity,price,shortDescription,origin,email:user?.email}),
+      body: JSON.stringify(updateItem),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          toast.success("Successfully Add Cart!");
+        if (data.modifiedCount > 0) {
+          toast.success("Successfully Updated Product!");
         }
       });
   };
   return (
     <div>
-      <Helmet>
-        <title>Cheesy | Add Food</title>
-      </Helmet>
+        <Helmet>
+            <title>Cheesy | Update Food</title>
+        </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
-      <form onSubmit={handleAddProduct}>
+      <form onSubmit={handleUpdateProduct}>
         {/*image */}
         <div className="mb-8">
           <div className="form-control md:w-full">
@@ -62,41 +59,44 @@ const AddFood = () => {
                 type="text"
                 name="image"
                 placeholder="Image URL"
+                defaultValue={image}
                 className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
-        {/*  */}
+        {/*  name and brand name */}
         <div className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <label className="label">
-              <span className="label-text">Food Name</span>
+              <span className="label-text">Name</span>
             </label>
             <label className="input-group">
               <input
                 type="text"
                 name="name"
                 placeholder="Name"
+                defaultValue={name}
                 className="input input-bordered w-full"
               />
             </label>
           </div>
           <div className="form-control md:w-1/2 ml-4">
             <label className="label">
-              <span className="label-text">Food Category</span>
+              <span className="label-text">Category</span>
             </label>
             <label className="input-group">
               <input
                 type="text"
                 name="category"
-                placeholder="Food Category"
+                placeholder="Brand Name"
+                defaultValue={category}
                 className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
-        {/*  */}
+        {/* type and price */}
         <div className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <label className="label">
@@ -106,7 +106,8 @@ const AddFood = () => {
               <input
                 type="type"
                 name="quantity"
-                placeholder="Quantity"
+                placeholder="Type"
+                defaultValue={quantity}
                 className="input input-bordered w-full"
               />
             </label>
@@ -120,12 +121,13 @@ const AddFood = () => {
                 type="text"
                 name="price"
                 placeholder="Price"
+                defaultValue={price}
                 className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
-        {/*  */}
+        {/* short description and rating */}
         <div className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <label className="label">
@@ -136,19 +138,21 @@ const AddFood = () => {
                 type="text"
                 name="shortDescription"
                 placeholder="Short Description"
+                defaultValue={shortDescription}
                 className="input input-bordered w-full"
               />
             </label>
           </div>
           <div className="form-control md:w-1/2 ml-4">
             <label className="label">
-              <span className="label-text">Food Origin</span>
+              <span className="label-text">Origin</span>
             </label>
             <label className="input-group">
               <input
                 type="text"
                 name="origin"
-                placeholder="Food Origin"
+                placeholder="Rating"
+                defaultValue={origin}
                 className="input input-bordered w-full"
               />
             </label>
@@ -158,11 +162,11 @@ const AddFood = () => {
         <input
           className="btn bg-violet-700 btn-block text-white"
           type="submit"
-          value="Add Food"
+          value="Update Food"
         />
       </form>
     </div>
   );
 };
 
-export default AddFood;
+export default UpdateFood;

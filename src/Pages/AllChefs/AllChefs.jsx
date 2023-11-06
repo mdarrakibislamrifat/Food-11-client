@@ -1,7 +1,12 @@
+import { Helmet } from "react-helmet-async";
+
 const AllChefs = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3">
       {/* first card */}
+      <Helmet>
+        <title>Cheesy | Chefs</title>
+      </Helmet>
       <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
         <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white h-96 rounded-xl bg-clip-border">
           <img

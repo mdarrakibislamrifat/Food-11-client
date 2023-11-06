@@ -2,6 +2,7 @@
 import { useLoaderData } from "react-router-dom";
 import SingleOrder from "../SingleOrder/SingleOrder";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const OrderedFoodItem = () => {
@@ -14,6 +15,9 @@ const OrderedFoodItem = () => {
     
     return (
         <div className="grid grid-cols-1  lg:grid-cols-2 gap-2">
+        <Helmet>
+          <title>Cheesy | Order food</title>
+        </Helmet>
         {
         carts?.map((cart) => (
             <SingleOrder

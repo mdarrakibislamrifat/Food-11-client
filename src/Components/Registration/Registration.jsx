@@ -5,6 +5,7 @@ import { AuthContext } from "../AuthProviders/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -49,6 +50,9 @@ const Register = () => {
 
   return (
     <div className="hero my-10">
+      <Helmet>
+        <title>Cheesy | Registration</title>
+      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="hero-content ">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
