@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../Components/AuthProviders/AuthProviders";
 import Swal from "sweetalert2";
 
@@ -42,16 +42,16 @@ const SingleOrder = ({cart,carts,handleCart}) => {
       };
 
     return (
-        <div>
+        <>
             {user?.email===email &&
-            <div>
+            
             <div className="card h-full lg:card-side bg-base-100 shadow-xl  p-4 h-[500px] border-4 border-violet-500">
               <figure>
                 <img className="w-full" src={image} alt="Album" />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{name}</h2>
-                <h2 >Origin: {origin}</h2>
+                <h2>Origin: {origin}</h2>
                 <h2>Quantity: {quantity}</h2>
                 <h2>Food Owner: {user?.displayName}</h2>
                 <h2>Added Time: {today}</h2>
@@ -68,8 +68,8 @@ const SingleOrder = ({cart,carts,handleCart}) => {
                 </div>
               </div>
             </div>
-          </div>}
-        </div>
+          }
+        </>
     );
 };
 

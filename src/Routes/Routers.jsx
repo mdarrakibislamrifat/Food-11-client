@@ -64,7 +64,8 @@ import OrderedFoodItem from "../Pages/OrderedFoodItem/OrderedFoodItem";
       },
       {
         path:'/addedFoodItem',
-        element:<AddedFoodItem></AddedFoodItem>
+        element:<AddedFoodItem></AddedFoodItem>,
+        loader:()=>fetch('http://localhost:5000/items')
       },
       {
         path:'/orderedFoodItem',

@@ -1,7 +1,6 @@
 
 import { useLoaderData } from "react-router-dom";
 import SingleOrder from "../SingleOrder/SingleOrder";
-import NodataFound from "../../Components/NoDataFound/NodataFound";
 import { useState } from "react";
 
 
@@ -14,7 +13,7 @@ const OrderedFoodItem = () => {
  
     
     return (
-        <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+        <div className="grid grid-cols-1  lg:grid-cols-2 gap-2">
         {
         carts?.map((cart) => (
             <SingleOrder

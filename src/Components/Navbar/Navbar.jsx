@@ -123,7 +123,7 @@ const Navbar = () => {
       {user && <div className="dropdown">
         <label tabIndex={0} >
         <img
-                className="rounded-full w-[70px] h-[50px] mr-2"
+                className="rounded-full w-[50px] h-[50px] mr-2"
                 src={user?.photoURL}
                 alt=""
               />
