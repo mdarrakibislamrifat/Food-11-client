@@ -10,6 +10,8 @@ const SingleOrder = ({cart,carts,handleCart}) => {
     const { id,name, image,email, origin, quantity, shortDescription,today } = cart|| {};
     const {user}=useContext(AuthContext);
 
+  
+
     const handleDelete = () => {
         Swal.fire({
           title: "Are you sure?",
@@ -42,7 +44,7 @@ const SingleOrder = ({cart,carts,handleCart}) => {
       };
 
     return (
-        <>
+        <div>
             {user?.email===email &&
             
             <div className="card h-full lg:card-side bg-base-100 shadow-xl  p-4 h-[500px] border-4 border-violet-500">
@@ -67,9 +69,9 @@ const SingleOrder = ({cart,carts,handleCart}) => {
             </button>
                 </div>
               </div>
-            </div>
+            </div> 
           }
-        </>
+        </div>
     );
 };
 

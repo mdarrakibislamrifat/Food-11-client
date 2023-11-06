@@ -68,7 +68,7 @@ const AddFood = () => {
           </div>
         </div>
         {/*  */}
-        <div className="md:flex mb-8">
+        <div data-aos="zoom-in" className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <label className="label">
               <span className="label-text">Food Name</span>

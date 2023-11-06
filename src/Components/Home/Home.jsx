@@ -10,7 +10,7 @@ const Home = () => {
             <Helmet>
                 <title>Cheesy | Home</title>
             </Helmet>
-            <div className="min-w-[725px]">
+            <div>
             <Banner></Banner>
             </div>
             <div className="mt-8">

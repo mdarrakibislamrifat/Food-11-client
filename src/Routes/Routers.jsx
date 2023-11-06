@@ -78,6 +78,7 @@ import Allmenu from "../Pages/Allmenu/Allmenu";
       },
       {
         path:'/orderedFoodItem',
+        
         element:<OrderedFoodItem></OrderedFoodItem>,
         loader:()=>fetch('http://localhost:5000/carts')
       }

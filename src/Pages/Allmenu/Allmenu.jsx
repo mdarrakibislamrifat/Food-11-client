@@ -1,10 +1,9 @@
+
 const Allmenu = () => {
+
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
-
-
-
-
+    <div data-aos="zoom-in" className="grid grid-cols-1 md:grid-cols-2">
       {/* card */}
       <div className="relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700">
         <div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-[url('https://i.ibb.co/YWSfBHV/Green-Chicken-Enchilada-Featured-1.jpg')] bg-cover bg-clip-border bg-center text-gray-700 shadow-none">

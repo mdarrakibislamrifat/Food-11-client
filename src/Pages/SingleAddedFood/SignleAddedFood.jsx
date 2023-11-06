@@ -3,10 +3,10 @@ import { AuthContext } from "../../Components/AuthProviders/AuthProviders";
 import { Link } from "react-router-dom";
 
 
-const SignleAddedFood = ({cart,carts,handleCart}) => {
+const SignleAddedFood = ({cart,carts}) => {
     const { _id,name, image,email, origin, quantity, shortDescription,today } = cart|| {};
     const {user}=useContext(AuthContext);
-    
+   
     return (
         <>
             {user?.email===email &&

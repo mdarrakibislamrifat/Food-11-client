@@ -3,16 +3,19 @@ import './pagination.css'
 import SingleFoodCard from "../../Components/SingleFoodCard/SingleFoodCard";
 import { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet-async';
-
+import Lottie from 'lottie-react';
+import animation from '../../assets/loading.json'
 const Fooditems = () => {
   
   const [items,setItems]=useState([])
   // eslint-disable-next-line no-unused-vars
   const [cardsData, setCardsData] = useState(items);
   const [itemsPerPage,setItemsPerPage]=useState(9);
-  const [currentPage,setCurrentPage]=useState(0)
+  const [currentPage,setCurrentPage]=useState(0);
+  const [loading,setLoading]=useState(false);
 
   const [countData, setCountData] = useState();
+  
 
   useEffect(()=>{
   fetch(`http://localhost:5000/items?page=${currentPage}&&size=${itemsPerPage}`)
@@ -45,9 +48,14 @@ const Fooditems = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const value = e.target.text.value.toLowerCase();
-    const data = items?.filter((sData) => sData.name.toLowerCase() === value);
-    setItems(data)
+    setLoading(true)
+    setTimeout(()=>{
+      const value = e.target.text.value.toLowerCase();
+      const data = items?.filter((sData) => sData.name.toLowerCase() === value);
+      setItems(data)
+      setLoading(false)
+    },1000)
+    
     
   };
 
@@ -94,13 +102,17 @@ const Fooditems = () => {
         <title>Cheesy | Food Items</title>
       </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {items?.map((item) => (
+        {loading? (<Lottie animationData={animation}></Lottie>) : 
+        
+        (
+          items?.map((item) => (
           <SingleFoodCard
             key={item._id}
             item={item}
             
           ></SingleFoodCard>
-        ))}
+        )))      }
+        
       </div>
       <div className='pagination'>
         

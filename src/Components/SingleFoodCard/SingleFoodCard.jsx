@@ -8,8 +8,8 @@ const SingleFoodCard = ({ item}) => {
  
 
   return (
-   <div>
-    <div className="card border-4 border-violet-500 bg-base-100 shadow-xl">
+   <div >
+    <div data-aos="zoom-in" className="card border-4 border-violet-500 bg-base-100 shadow-xl">
       <figure className="px-4 pt-10">
         <img 
           src={image}

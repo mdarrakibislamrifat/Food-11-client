@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { GoogleAuthProvider } from "firebase/auth";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 
 const Login = () => {
@@ -23,11 +24,23 @@ const Login = () => {
     const password = form.password.value;
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        const loggeduser=result.user;
+        const user={email};
         e.target.reset();
         toast.success('Logged in...',{id:toastId});
-        navigate(location?.state ? location.state : "/");
         
+        
+        // get access token
+
+        axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+        .then(res=>{
+          console.log(res.data)
+          if(res.data.success){
+            navigate(location?.state ? location.state : "/");
+          }
+        })
+
+
       })
       .catch((error) => {
         setError(error.message);
