@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 
 
+
 const Root = () => {
     return (
         <div className="max-w-7xl mx-auto space-y-6">

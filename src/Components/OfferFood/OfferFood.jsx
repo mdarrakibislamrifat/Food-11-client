@@ -1,6 +1,6 @@
 const OfferFood = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {/* first card */}
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>

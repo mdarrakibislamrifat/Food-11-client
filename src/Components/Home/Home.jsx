@@ -10,7 +10,9 @@ const Home = () => {
             <Helmet>
                 <title>Cheesy | Home</title>
             </Helmet>
+            <div className="min-w-[725px]">
             <Banner></Banner>
+            </div>
             <div className="mt-8">
                 <h1 className="text-4xl font-bold text-center underline mb-6">Offer Food Items</h1>
                 <p></p>

@@ -17,6 +17,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddedFoodItem from "../Pages/AddedFoodItem/AddedFoodItem";
 import OrderedFoodItem from "../Pages/OrderedFoodItem/OrderedFoodItem";
 import UpdateFood from "../Pages/UpdateFood/UpdateFood";
+import Allmenu from "../Pages/Allmenu/Allmenu";
 
   const router = createBrowserRouter([
     {
@@ -33,8 +34,15 @@ import UpdateFood from "../Pages/UpdateFood/UpdateFood";
             element:<Blogs></Blogs>
         },
         {
+            path:'/allMenu',
+            element:<Allmenu></Allmenu>,
+          
+            
+        },
+        {
             path:'/allfood',
-            element:<Fooditems></Fooditems>
+            element:<Fooditems></Fooditems>,
+          
             
         },
         {
