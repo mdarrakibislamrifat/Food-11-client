@@ -18,29 +18,36 @@ const Order = () => {
   today = mm + '/' + dd + '/' + yyyy;
 
   const handlePurchase=()=>{
-    if(user?.email !== email){
-      fetch('http://localhost:5000/carts', {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({id:_id, image, name,origin,quantity,shortDescription,today,email:user.email}),
-      })
-        .then((result) => result.json())
-        .then((data) => {
-          if (data.insertedId) {
-            toast.success("Successfully Added Cart!");
-          } else {
-            toast.error("Already added this Food");
-          }
-          console.log(data);
-        })
-        .catch((error) => console.log(error));
-  }else{
-    toast.error('Don’t purchase because your own added food items.')
-  }
 
+    if(quantity>0){
+      if(user?.email !== email){
+        fetch('http://localhost:5000/carts', {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({id:_id, image, name,origin,quantity,shortDescription,today,email:user.email}),
+        })
+          .then((result) => result.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Successfully Added Cart!");
+            } else {
+              toast.error("Already added this Food");
+            }
+            console.log(data);
+          })
+          .catch((error) => console.log(error));
+    }else{
+      toast.error('Don’t purchase because your own added food items.')
     }
+  
+      }
+      else{
+        toast.error('Not available this food')
+      }
+    }
+   
   
   
   return (
