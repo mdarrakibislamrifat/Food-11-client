@@ -45,7 +45,7 @@ const SingleOrder = ({cart,carts,handleCart}) => {
 
     return (
         <>
-            {user?.email===email &&
+           
             
             <div className="card h-full lg:card-side bg-base-100 shadow-xl  p-4 h-[500px] border-4 border-violet-500">
               <figure>
@@ -70,7 +70,7 @@ const SingleOrder = ({cart,carts,handleCart}) => {
                 </div>
               </div>
             </div> 
-          }
+          
         </>
     );
 };

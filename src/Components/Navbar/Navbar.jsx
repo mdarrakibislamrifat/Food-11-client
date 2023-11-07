@@ -104,10 +104,10 @@ const Navbar = () => {
         />
         <Link className="btn btn-ghost normal-case text-xl">Take It Cheesy</Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      {user && <div className="dropdown">
+      {user && <div className="dropdown ml-20 md:ml-0 lg:ml-0">
         <label tabIndex={0} >
         <img
                 className="rounded-full w-[50px] h-[50px] mr-2"
@@ -119,7 +119,7 @@ const Navbar = () => {
           tabIndex={0}
           className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52"
         >
-          <li>{user?.displayName}</li>
+          <li className="text-green-500">{user?.displayName}</li>
           <li>
             <Link to='/addFood'>Add a food item</Link>
           </li>

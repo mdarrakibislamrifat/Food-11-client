@@ -22,6 +22,7 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    
     signIn(email, password)
       .then((result) => {
         const loggeduser=result.user;
@@ -49,10 +50,21 @@ const Login = () => {
   
 
   const handleGoogle = () => {
-    googleSignIn(provider).then((result) => {
-      navigate(location?.state ? location.state : "/").catch((error) => {
-        console.log(error.message);
-      });
+    googleSignIn(provider)
+    .then((result) => {
+      const user={email:result.user.email}
+      axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+      .then(res=>{
+        
+        if(res.data.success){
+          navigate(location?.state ? location.state : "/");
+        }
+      })
+
+
+    })
+    .catch((error) => {
+      setError(error.message);
     });
   };
   <Toaster
