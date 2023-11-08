@@ -1,4 +1,2 @@
-export const getToken=()=>{
-    const cookie=document.cookie;
-    return cookie.split('=')[1]
-}
+export const getToken=()=>localStorage.getItem('token')
+

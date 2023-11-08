@@ -27,7 +27,7 @@ const UpdateFood = () => {
       shortDescription,
       origin,
     };
-    fetch(`http://localhost:5000/items/${_id}`, {
+    fetch(`https://restaurant-management-server-orcin.vercel.app/items/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

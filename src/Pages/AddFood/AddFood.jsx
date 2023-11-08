@@ -29,7 +29,7 @@ const AddFood = () => {
       origin,
     };
 
-    fetch('http://localhost:5000/items', {
+    fetch('https://restaurant-management-server-orcin.vercel.app/items', {
       method: "POST",
       headers: {
         "content-type": "application/json",

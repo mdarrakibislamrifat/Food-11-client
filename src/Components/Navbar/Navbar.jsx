@@ -1,9 +1,16 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProviders/AuthProviders";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  const navigate=useNavigate();
+  const handleLogOut=()=>{
+    logOut()
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
 
   const navLinks = (
     <>
@@ -51,7 +58,7 @@ const Navbar = () => {
       </li>
       <li>
         {user ? (
-          <button onClick={logOut}>Logout</button>
+          <button onClick={handleLogOut}>Logout</button>
         ) : (
           <NavLink
             to="/login"
@@ -107,7 +114,7 @@ const Navbar = () => {
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      {user && <div className="dropdown ml-20 md:ml-0 lg:ml-0">
+      {user && <div className="dropdown dropdown-bottom dropdown-end ml-24 md:ml-0 lg:ml-0">
         <label tabIndex={0} >
         <img
                 className="rounded-full w-[50px] h-[50px] mr-2"

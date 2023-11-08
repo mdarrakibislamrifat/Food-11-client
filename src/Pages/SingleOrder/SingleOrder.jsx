@@ -23,7 +23,7 @@ const SingleOrder = ({cart,carts,handleCart}) => {
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://localhost:5000/carts/${id}/${user.email}`, {
+            fetch(`https://restaurant-management-server-orcin.vercel.app/carts/${id}/${user.email}`, {
               method: "DELETE",
             })
               .then((res) => res.json())

@@ -20,7 +20,7 @@ const Fooditems = () => {
 
   useEffect(()=>{
     
-  fetch(`http://localhost:5000/items?page=${currentPage}&&size=${itemsPerPage}`)
+  fetch(`https://restaurant-management-server-orcin.vercel.app/items?page=${currentPage}&&size=${itemsPerPage}`)
   .then(res=>res.json())
   .then(data=>setItems(data))
   },[currentPage,itemsPerPage])
@@ -28,7 +28,7 @@ const Fooditems = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/itemsCount")
+    fetch("https://restaurant-management-server-orcin.vercel.app/itemsCount")
       .then((res) => res.json())
       .then((data) => setCountData(data));
   }, []);

@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         path: "/details/:_id",
         element: <DetailsPage></DetailsPage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/id/${params._id}`),
+          fetch(`https://restaurant-management-server-orcin.vercel.app/items/id/${params._id}`),
       },
       {
         path: "/addFood",
@@ -69,26 +69,26 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/id/${params._id}`),
+          fetch(`https://restaurant-management-server-orcin.vercel.app/items/id/${params._id}`),
       },
       {
         path: "/addedFoodItem",
         element: <AddedFoodItem></AddedFoodItem>,
-        loader: () => fetch("http://localhost:5000/items"),
+        loader: () => fetch("https://restaurant-management-server-orcin.vercel.app/items"),
       },
       {
         path: "/orderedFoodItem",
         element: <OrderedFoodItem></OrderedFoodItem>,
         loader: () => {
-        const token=getToken()
-         return fetch("http://localhost:5000/carts",{headers:{token}});
+        const token=getToken();
+         return fetch("https://restaurant-management-server-orcin.vercel.app/carts",{headers:{token}});
         },
       },
       {
         path: "/update/:id",
         element: <UpdateFood></UpdateFood>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/${params.id}`),
+          fetch(`https://restaurant-management-server-orcin.vercel.app/items/${params.id}`),
       },
     ],
   },

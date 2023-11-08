@@ -21,7 +21,7 @@ const Order = () => {
 
     if(quantity>0){
       if(user?.email !== email){
-        fetch('http://localhost:5000/carts', {
+        fetch('https://restaurant-management-server-orcin.vercel.app/carts', {
           method: "POST",
           headers: {
             "content-type": "application/json",

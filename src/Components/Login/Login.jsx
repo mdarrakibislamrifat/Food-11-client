@@ -33,10 +33,11 @@ const Login = () => {
         
         // get access token
 
-        axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+        axios.post('https://restaurant-management-server-orcin.vercel.app/jwt',user,{withCredentials:true})
         .then(res=>{
           console.log(res.data)
           if(res.data.success){
+            localStorage.setItem('token',res.data.token)
             navigate(location?.state ? location.state : "/");
           }
         })
@@ -53,10 +54,11 @@ const Login = () => {
     googleSignIn(provider)
     .then((result) => {
       const user={email:result.user.email}
-      axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+      axios.post('https://restaurant-management-server-orcin.vercel.app/jwt',user,{withCredentials:true})
       .then(res=>{
         
         if(res.data.success){
+          localStorage.setItem('token',res.data.token)
           navigate(location?.state ? location.state : "/");
         }
       })
