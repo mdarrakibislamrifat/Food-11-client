@@ -1,4 +1,3 @@
-
 import { useContext, useState } from "react";
 
 import { AuthContext } from "../AuthProviders/AuthProviders";
@@ -6,14 +5,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-
+import axios from "axios";
 
 const Register = () => {
   const { createUser, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [registerError, SetRegisterError] = useState("");
   const location = useLocation();
-  
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -29,7 +28,7 @@ const Register = () => {
       !/^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{6,}).*$/.test(password)
     ) {
       setError(
-        "Please provide more than 6 characters,one capital letter and a special character",
+        "Please provide more than 6 characters,one capital letter and a special character"
       );
     } else {
       createUser(email, password, photo, name)
@@ -38,15 +37,25 @@ const Register = () => {
             displayName: `${name}`,
             photoURL: `${photo}`,
           });
-          toast.success("Successfully Register!");
+          axios
+            .post(
+              "https://restaurant-management-server-orcin.vercel.app/jwt",
+              result.user,
+              { withCredentials: true }
+            )
+            .then((res) => {
+              if (res.data.success) {
+                localStorage.setItem("token", res.data.token);
+                toast.success("Successfully Register!");
+                navigate("/");
+              }
+            });
         })
         .catch((error) => {
           setError(error.message);
         });
     }
   };
-
- 
 
   return (
     <div className="hero my-10">
@@ -122,7 +131,6 @@ const Register = () => {
               <button className="btn btn-primary">Register</button>
             </div>
           </form>
-          
         </div>
       </div>
     </div>

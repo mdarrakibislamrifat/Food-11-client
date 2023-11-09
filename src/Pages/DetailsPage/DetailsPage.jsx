@@ -8,7 +8,7 @@ const DetailsPage = () => {
   const {user}=useContext(AuthContext);
 
   // eslint-disable-next-line no-unused-vars
-  const { _id, name, image, category,origin, price, quantity,shortDescription } =
+  const { _id, name, image, category,origin,email, price, quantity,shortDescription } =
     item || {};
   return (
     <div className="card border-4 border-violet-500  w-auto bg-base-100 shadow-xl">
@@ -20,7 +20,7 @@ const DetailsPage = () => {
       </figure>
       <div className="card-body  items-center text-center">
         <h2 className="card-title">FoodName: {name}</h2>
-        <p className="text-blue-500 text-xl font-semibold">Made By {user?.email}</p>
+        <p className="text-blue-500 text-xl font-semibold">Made By {email}</p>
         <p>Category :{category}</p>
         <p>Price : {price}</p>
         <p>Quantity : {quantity}</p>
