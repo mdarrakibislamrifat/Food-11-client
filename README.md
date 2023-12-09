@@ -17,3 +17,14 @@
 
 [Take It Cheesy](https://abashed-hydrant.surge.sh/)
 
+# Technology that i am used--
+
+* Html5
+* css3
+* tailwindcss
+* react.js
+* express.js
+* javascript
+* daisyui
+* mongodb
+* VsCode
